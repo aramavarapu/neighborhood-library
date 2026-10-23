@@ -46,4 +46,40 @@ public class LibaryApp {
              }
          }
     }
+    public static void showAvailableBooks(Book[] invetory, Scanner scanner) {
+        boolean found = false;
+        for (Book currentBook : invetory) {
+            if (currentBook != null && !currentBook.isCheckedOut()) {
+                System.out.println("ID: " + currentBook.getId() + "ISBN" + currentBook.getIsbn() + "Title" + currentBook.getTitle());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No books are available at the moment");
+            return;
+        }
+        System.out.print("Enter the ID of the books to check out, or 0 to go back");
+        int selectedID = scanner.nextInt();
+        scanner.nextLine();
+
+        if (selectedID == 0) {
+            return;
+        }
+        Book selectedBook = null;
+        for (Book currentBook: invetory) {
+            if (currentBook != null && currentBook.getId() == selectedID && !currentBook.isCheckedOut()) {
+                selectedBook = currentBook;
+            }
+        }
+        if (selectedBook == null) {
+            System.out.println("That ID is not one of the available books.");
+            return;
+        }
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+
+        selectedBook.checkOut(name);
+        System.out.println(selectedBook.getTitle() + " is now checked out to " + name + "!");
+    }
+
 }
