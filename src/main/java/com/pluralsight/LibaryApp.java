@@ -1,7 +1,8 @@
 package com.pluralsight;
-
+import java.util.Scanner;
 public class LibaryApp {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         Book[]  inventory = new Book[20];
          inventory[0] = new Book(1, "978-0-00-000001-1", "Pride and Prejudice");
          inventory[1] = new Book(2, "978-0-00-000002-8", "Moby-Dick");
@@ -23,5 +24,26 @@ public class LibaryApp {
          inventory[17] = new Book(18, "978-0-00-000018-9", "The Time Machine");
          inventory[18] = new Book(19, "978-0-00-000019-6", "Heart of Darkness");
          inventory[19] = new Book(20, "978-0-00-000020-2", "Anne of Green Gables");
+
+         int command = 0;
+
+         while (command != 3) {
+             System.out.println();
+             System.out.println("Neightborhood Libary");
+             System.out.println("1 - Show Available Books");
+             System.out.println("2 - Show Checked Out Books");
+             System.out.println("3 - Exit - closes out of the application");
+             System.out.print("Enter a number: ");
+
+             command = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (command) {
+                 case 1 -> showAvailableBooks(inventory);
+                 case 2 -> showCheckedOutBooks(inventory);
+                 case 3 -> System.out.println("Have a good day! Make sure to read!");
+                 default -> System.out.println("Enter a number from 1-3");
+             }
+         }
     }
 }

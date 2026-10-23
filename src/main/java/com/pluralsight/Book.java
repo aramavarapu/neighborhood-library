@@ -64,10 +64,8 @@ public class Book {
     }
 
     public void checkOut(String name) {
-        if (!isCheckedOut) {
             isCheckedOut = true;
             checkedOutTo = name;
-        }
     }
 
     public void checkIn() {
@@ -75,4 +73,14 @@ public class Book {
         checkedOutTo = "";
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", isCheckedOut=" + isCheckedOut +
+                ", checkedOutTo='" + checkedOutTo + '\'' +
+                '}';
+    }
 }
